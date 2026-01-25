@@ -17,7 +17,7 @@ h1 {
 
 .sidebar {
     background: black;
-    width: 33%;
+    width: 200px;
     height: 100vh;
     padding: 1rem;
 }
@@ -26,7 +26,7 @@ h1 {
 ul {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.3rem;
     padding-top: 25px;
 }
 
@@ -34,7 +34,7 @@ ul {
     color: white;
     display: flex;
     align-items: center;
-    gap: 0.2rem;
+    gap: 1rem;
     font-size: 1.2rem;
     cursor: pointer;
 }
