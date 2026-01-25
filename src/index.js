@@ -1,4 +1,7 @@
 import "./styles.css";
+import renderNavigation from "./modules/navigation";
 
+const app = document.querySelector("#app");
 
-console.log("Webpack is working 🚀");
+app.append(renderNavigation())
+
