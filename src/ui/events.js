@@ -22,8 +22,9 @@ export default function initAppEvents() {
         tasksWrapper.classList.add("tasks-wrapper");
 
         // create add task button
-        const addTaskGroup = document.createElement("div");
-        addTaskGroup.classList.add("add-task-group");
+        const addTaskButton = document.createElement("button");
+        addTaskButton.classList.add("add-task-button");
+        addTaskButton.dataset.modal = "add-task";
 
         const addTaskText = document.createElement("p");
         addTaskText.textContent = "Add Task";
@@ -33,7 +34,7 @@ export default function initAppEvents() {
         plusIconElement.src = plusIcon;
 
         // assembly
-        addTaskGroup.append(plusIconElement, addTaskText)
+        addTaskButton.append(plusIconElement, addTaskText)
 
         // if tabText.toLowerCase() === "completed" then create a delete all button
         if (tabText.toLowerCase() === "completed") {
@@ -44,7 +45,7 @@ export default function initAppEvents() {
             taskSection.append(taskSectionTitle, tasksWrapper, deleteButton);
         } else {
 
-            taskSection.append(taskSectionTitle, tasksWrapper, addTaskGroup)
+            taskSection.append(taskSectionTitle, tasksWrapper, addTaskButton)
         }
     }
 
