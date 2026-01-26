@@ -27,8 +27,14 @@ export function createModal() {
 export function openModal(type) {
     form.innerHTML = "";
 
-    if (type === "add-task") form.append(renderAddTask());
-    if (type === "add-project") form.append(renderAddProject());
+    if (type === "add-task") {
+        form.id = "create-task";
+        form.append(renderAddTask());
+    } 
+    if (type === "add-project") {
+        form.id = "create-project";
+        form.append(renderAddProject());
+    } 
 
     modalOverlay.classList.add("open");
 }
@@ -53,6 +59,7 @@ function renderAddTask() {
 
     const nameInput = document.createElement("input");
     nameInput.classList.add("name-input")
+    nameInput.name = "task-name";
     nameInput.placeholder = "Task Name";
     nameInput.required = true;
 
@@ -66,17 +73,21 @@ function renderAddTask() {
 
     const descriptionInput = document.createElement("textarea");
     descriptionInput.classList.add("description-input")
+    descriptionInput.name = "task-description";
     descriptionInput.placeholder = "Description";
     
+
     // create date selector
     const dateInput = document.createElement("input");
     dateInput.classList.add("date-input")
+    dateInput.name = "task-date"
     dateInput.type = "date";
     dateInput.required = true;
 
     // create priority dropdown
     const priorityDropdown = document.createElement("select");
     priorityDropdown.id = "priority";
+    priorityDropdown.name = "task-priority";
 
     ["Low", "Medium", "High"].forEach((level) => {
         const option = document.createElement("option")

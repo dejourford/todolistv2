@@ -81,16 +81,6 @@ export default function initAppEvents() {
         })
     })
 
-    // listener for add task button
-    document.addEventListener("click", (e) => {
-        if (e.target.closest(".add-task")) {
-
-            e.preventDefault();
-            handleFormData();
-            closeModal();
-        }
-    })
-
     // listener for cancel button
     document.addEventListener("click", (e) => {
         if (e.target.closest(".cancel")) {
