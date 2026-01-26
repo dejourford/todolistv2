@@ -1,4 +1,5 @@
 import plusIcon from "../assets/icons/plus.svg"
+import handleFormData from "../modules/todo";
 import { closeModal, createModal, openModal } from "./modal";
 
 export default function initAppEvents() {
@@ -80,15 +81,23 @@ export default function initAppEvents() {
         })
     })
 
+    // listener for add task button
+    document.addEventListener("click", (e) => {
+        if (e.target.closest(".add-task")) {
+
+            e.preventDefault();
+            handleFormData();
+            closeModal();
+        }
+    })
 
     // listener for cancel button
-     
-        document.addEventListener("click", (e) => {
-            if (e.target.closest(".cancel")) {
+    document.addEventListener("click", (e) => {
+        if (e.target.closest(".cancel")) {
 
-                e.preventDefault();
-                closeModal();
-            }
-        })
-    
+            e.preventDefault();
+            closeModal();
+        }
+    })
+
 }
