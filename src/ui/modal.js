@@ -100,6 +100,8 @@ function renderAddTask() {
     createTaskButton.textContent = "Create Task";
 
     const cancelTaskButton = document.createElement("button");
+    cancelTaskButton.type = "button";
+    cancelTaskButton.classList.add("cancel")
     cancelTaskButton.classList.add("action-button")
     cancelTaskButton.textContent = "Cancel";
 

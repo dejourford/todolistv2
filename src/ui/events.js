@@ -1,5 +1,5 @@
 import plusIcon from "../assets/icons/plus.svg"
-import { createModal, openModal } from "./modal";
+import { closeModal, createModal, openModal } from "./modal";
 
 export default function initAppEvents() {
 
@@ -80,4 +80,15 @@ export default function initAppEvents() {
         })
     })
 
+
+    // listener for cancel button
+     
+        document.addEventListener("click", (e) => {
+            if (e.target.closest(".cancel")) {
+
+                e.preventDefault();
+                closeModal();
+            }
+        })
+    
 }
