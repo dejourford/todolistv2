@@ -1,4 +1,5 @@
 import plusIcon from "../assets/icons/plus.svg"
+import { createModal, openModal } from "./modal";
 
 export default function initAppEvents() {
 
@@ -25,6 +26,17 @@ export default function initAppEvents() {
         const addTaskButton = document.createElement("button");
         addTaskButton.classList.add("add-task-button");
         addTaskButton.dataset.modal = "add-task";
+
+        // listener for add task button
+        addTaskButton.addEventListener("click", (e) => {
+            if (!document.querySelector(".modal-overlay")) {
+
+                createModal();
+                console.log(e.currentTarget.dataset.modal)
+            }
+            openModal(e.currentTarget.dataset.modal)
+        })
+
 
         const addTaskText = document.createElement("p");
         addTaskText.textContent = "Add Task";
@@ -67,4 +79,5 @@ export default function initAppEvents() {
             showTabContent(tabTextContent, tabId);
         })
     })
+
 }
