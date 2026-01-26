@@ -64,11 +64,13 @@ ul {
     font-size: 1.8rem;
 }
 
-.add-task-group {
+.add-task-button {
     display: flex;
     font-size: 1.3rem;
     gap: 0.4rem;
     padding-top: 1rem;
+    border: none;
+    background: none;
 }
 
 .plus-icon {
