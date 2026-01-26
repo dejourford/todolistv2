@@ -44,6 +44,13 @@ ul {
     height: 25px;
 }
 
+.nav-item.active {
+    border-radius: 0.2rem;
+    padding: 0.2rem;
+    background: var(--accent-color);
+    opacity: 80%;
+}
+
 /* media queries */
 @media screen and (min-width: 769px) {
 
