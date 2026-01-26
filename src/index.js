@@ -1,11 +1,13 @@
 import "./styles.css";
-import renderNavigation from "./modules/navigation";
+import renderApp from "./ui/render";
 import initAppEvents from "./ui/events";
 
 
 const app = document.querySelector("#app");
 
-app.append(renderNavigation())
+
 
 // call functions
+renderApp();
 initAppEvents();
+

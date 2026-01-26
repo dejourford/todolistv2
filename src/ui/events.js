@@ -1,6 +1,6 @@
 export default function initAppEvents() {
 
-    // listener for navigation tab clicks
+    // listener for active navigation tab clicks
     document.querySelectorAll(".nav-item").forEach((item) => {
         item.addEventListener("click", () => {
             
