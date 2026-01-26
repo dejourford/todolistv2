@@ -12,6 +12,10 @@
     display: flex;
 }
 
+button {
+    cursor: pointer;
+}
+
 /* sidebar navigation */
 h1 {
     color: white;
