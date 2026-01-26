@@ -8,7 +8,7 @@ import completed from "../assets/icons/completed.svg"
 function renderNavigation() {
     // page title
     const title = document.createElement("h1");
-    title.textContent = "todolist";
+    title.textContent = "JustDoIt";
 
     // sidebar
     const sidebar = document.createElement("div");
