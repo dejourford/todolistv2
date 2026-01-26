@@ -8,6 +8,10 @@
     --accent-color: rgb(252, 163, 17);
 }
 
+#app {
+    display: flex;
+}
+
 /* sidebar navigation */
 h1 {
     color: white;
@@ -49,6 +53,15 @@ ul {
     padding: 0.2rem;
     background: var(--accent-color);
     opacity: 80%;
+}
+
+/* task section */
+.task-section {
+    padding: 1rem;
+}
+
+.task-title {
+    font-size: 1.8rem;
 }
 
 /* media queries */
