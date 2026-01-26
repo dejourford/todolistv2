@@ -83,6 +83,65 @@ ul {
     margin-top: 20px;
 }
 
+/* modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+.modal {
+  background: white;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.input-title {
+    color: black;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.name-input {
+    width: 100%;
+}
+
+.description-input {
+    height: 150px;
+    width: 100%;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+} 
+
+.action-button {
+    padding: 0.5rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    border: 2px solid black;
+    outline: none;
+    background: none;
+}
+
 /* media queries */
 @media screen and (min-width: 769px) {
 
