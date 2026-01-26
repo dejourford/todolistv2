@@ -97,6 +97,7 @@ function renderAddTask() {
     actionButtonGroup.classList.add("action-buttons");
     
     const createTaskButton = document.createElement("button");
+    createTaskButton.classList.add("create-task")
     createTaskButton.classList.add("action-button")
     createTaskButton.type = "submit";
     createTaskButton.textContent = "Create Task";
