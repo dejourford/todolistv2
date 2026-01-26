@@ -54,6 +54,7 @@ function renderAddTask() {
     const nameInput = document.createElement("input");
     nameInput.classList.add("name-input")
     nameInput.placeholder = "Task Name";
+    nameInput.required = true;
 
     // create description input group
     const descriptionContainer = document.createElement("div");
@@ -71,6 +72,7 @@ function renderAddTask() {
     const dateInput = document.createElement("input");
     dateInput.classList.add("date-input")
     dateInput.type = "date";
+    dateInput.required = true;
 
     // create priority dropdown
     const priorityDropdown = document.createElement("select");
