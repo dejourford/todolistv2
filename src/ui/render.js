@@ -99,18 +99,40 @@ export default function renderApp() {
 
     const taskSection = document.createElement("main");
     taskSection.classList.add("task-section");
-    
+
     app.append(renderNavigation(), taskSection);
 }
 
 // create render function for rendering tasks
 export function renderTasks(project, tasksArray) {
-    const tasksSection = document.querySelector("task-section");
+    const tasksSection = document.querySelector(".task-section");
 
     // filter out the tasksArray for any tasks where #project-dropdown.value === project title
-   console.log(tasksArray)
-   console.log(project)
+    console.log(tasksArray)
+    console.log(project)
     const filteredItems = tasksArray.filter((item) => item.project === project)
     console.log(filteredItems);
-    return filteredItems
+
+    filteredItems.forEach((task) => {
+        const card = document.createElement("div");
+        card.classList.add("task-card");
+
+        const title = document.createElement("h3");
+        title.textContent = task["task-name"];
+
+        const description = document.createElement("p");
+        description.textContent = task["task-description"];
+
+        const date = document.createElement("span");
+        date.classList.add("task-date");
+        date.textContent = task["task-date"];
+
+        const priority = document.createElement("span");
+        priority.classList.add("task-priority", task["task-priority"]);
+        priority.textContent = task["task-priority"];
+
+        card.append(title, description, date, priority);
+
+        tasksSection.append(card);
+    })
 }
