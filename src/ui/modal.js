@@ -99,6 +99,7 @@ function renderAddTask() {
     // create project selector
     const projectDropdown = document.createElement("select");
     projectDropdown.id = "project-dropdown";
+    projectDropdown.name = "project"
     const projectOption = document.createElement("option");
     projectOption.value = "inbox";
     projectOption.textContent = "Inbox";

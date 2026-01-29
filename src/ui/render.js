@@ -102,3 +102,15 @@ export default function renderApp() {
     
     app.append(renderNavigation(), taskSection);
 }
+
+// create render function for rendering tasks
+export function renderTasks(project, tasksArray) {
+    const tasksSection = document.querySelector("task-section");
+
+    // filter out the tasksArray for any tasks where #project-dropdown.value === project title
+   console.log(tasksArray)
+   console.log(project)
+    const filteredItems = tasksArray.filter((item) => item.project === project)
+    console.log(filteredItems);
+    return filteredItems
+}

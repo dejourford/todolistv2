@@ -1,6 +1,8 @@
 // create function to handle form data on submit
+import { getCurrentProject } from "../ui/events";
 import { closeModal } from "../ui/modal";
-import { addToLocalStorage } from "./storage";
+import { renderTasks } from "../ui/render";
+import { addToLocalStorage, getTasksFromLocalStorage } from "./storage";
 
 export default function initFormEvents() {
 
@@ -18,6 +20,9 @@ export default function initFormEvents() {
         addToLocalStorage(data)
 
         closeModal();
+
+        // call render function and pass through getCurrentProject() and getTasksFromLocalStorage()
+        renderTasks(getCurrentProject(), getTasksFromLocalStorage())
     })
 }
 

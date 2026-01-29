@@ -91,3 +91,18 @@ export default function initAppEvents() {
     })
 
 }
+
+// function for getting current project
+export function getCurrentProject() {
+    let currentProject;
+    const tabs = document.querySelectorAll(".nav-item")
+    tabs.forEach((tab) => {
+        if (tab.classList.contains("active")) {
+            currentProject = tab.id;
+            console.log(currentProject)
+            
+        }
+        
+    })
+    return currentProject
+}
