@@ -1,5 +1,6 @@
 // create function to handle form data on submit
 import { closeModal } from "../ui/modal";
+import { addToLocalStorage } from "./storage";
 
 export default function initFormEvents() {
 
@@ -13,6 +14,8 @@ export default function initFormEvents() {
 
         const data = Object.fromEntries(new FormData(form).entries());
         console.log(data)
+
+        addToLocalStorage(data)
 
         closeModal();
     })
