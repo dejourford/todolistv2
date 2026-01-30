@@ -1,6 +1,7 @@
 import plusIcon from "../assets/icons/plus.svg"
-import handleFormData from "../modules/todo";
+import { getTasksFromLocalStorage } from "../modules/storage";
 import { closeModal, createModal, openModal } from "./modal";
+import { renderTasks } from "./render";
 
 export default function initAppEvents() {
 
@@ -78,6 +79,7 @@ export default function initAppEvents() {
             const tabTextContent = item.textContent
             const tabId = item.id
             showTabContent(tabTextContent, tabId);
+            renderTasks(getCurrentProject(), getTasksFromLocalStorage())
         })
     })
 
