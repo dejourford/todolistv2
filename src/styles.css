@@ -192,6 +192,7 @@ ul {
 .task-priority {
     padding: 0.3rem 2rem;
     border-radius: 9999px;
+    font-weight: 800;
 }
 
 .task-priority.Low {
