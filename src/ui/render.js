@@ -117,11 +117,23 @@ export function renderTasks(project, tasksArray) {
         const card = document.createElement("div");
         card.classList.add("task-card");
 
+        // create wrapper for title and description
+        const wrapperLeft = document.createElement("div");
+        wrapperLeft.classList.add("card-wrapper", "card-left");
+
+        const checkbox = document.createElement("input");
+        checkbox.classList.add("task-checkbox");
+        checkbox.type = "checkbox";
+
         const title = document.createElement("h3");
         title.textContent = task["task-name"];
 
         const description = document.createElement("p");
         description.textContent = task["task-description"];
+
+        // create wrapper for date, priority, and elipses
+        const wrapperRight = document.createElement("div");
+        wrapperRight.classList.add("card-wrapper", "card-right")
 
         const date = document.createElement("span");
         date.classList.add("task-date");
@@ -131,7 +143,10 @@ export function renderTasks(project, tasksArray) {
         priority.classList.add("task-priority", task["task-priority"]);
         priority.textContent = task["task-priority"];
 
-        card.append(title, description, date, priority);
+        wrapperLeft.append(checkbox, title, description)
+        wrapperRight.append(date, priority);
+        
+        card.append(wrapperLeft, wrapperRight);
 
         tasksSection.append(card);
     })

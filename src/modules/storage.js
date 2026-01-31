@@ -18,6 +18,6 @@ export function addToLocalStorage(task) {
 // create function to get tasks from local storage
 export function getTasksFromLocalStorage() {
     const ls = localStorage;
-    const tasksInLocalStorage = JSON.parse(ls.getItem("tasks"))
+    const tasksInLocalStorage = JSON.parse(ls.getItem("tasks")) || []
     return tasksInLocalStorage;
 }

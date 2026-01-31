@@ -91,7 +91,7 @@ function renderAddTask() {
 
     ["Low", "Medium", "High"].forEach((level) => {
         const option = document.createElement("option")
-        option.value = level.toLowerCase();
+        option.value = level
         option.textContent = level;
         priorityDropdown.append(option);
     })
