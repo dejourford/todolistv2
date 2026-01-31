@@ -25,7 +25,7 @@ h1 {
 
 .sidebar {
     background: black;
-    width: 200px;
+    /* width: 200px; */
     height: 100vh;
     padding: 1rem;
 }
@@ -65,6 +65,8 @@ ul {
 /* task section */
 .task-section {
     padding: 1rem;
+    max-width: 700px;
+    margin: 0 auto;
 }
 
 .task-title {
@@ -151,10 +153,15 @@ ul {
 }
 
 /* task items */
-.task-section {
-    width: 100%;
-    max-width: 700px;
-    margin: 0 auto;
+.card-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 1rem;
+}
+
+.card-right {
+    flex-direction: column;
 }
 
 .tasks-wrapper {
@@ -166,15 +173,38 @@ ul {
 .task-card {
     width: 100%;
     display: flex;
-    border: 1px solid lightblue;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    border: 2px solid black;
     border-radius: 0.2rem;
     padding: 1rem;
 
 }
 
+.task-checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
 
 
 /* media queries */
 @media screen and (min-width: 769px) {
+    .task-section {
+        width: 100%;
+    }
+    
+    .card-wrapper {
+        gap: 2rem;
+    }
+    
+    .task-card {
+        flex-direction: row;
+    }
 
+    .card-right {
+        flex-direction: row;
+    }
 }
