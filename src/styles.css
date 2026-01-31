@@ -189,6 +189,22 @@ ul {
     cursor: pointer;
 }
 
+.task-priority {
+    padding: 0.3rem 2rem;
+    border-radius: 9999px;
+}
+
+.task-priority.Low {
+    background: lightgreen;
+}
+
+.task-priority.Medium {
+    background: yellow;
+}
+
+.task-priority.High {
+    background: crimson;
+}
 
 /* media queries */
 @media screen and (min-width: 769px) {
