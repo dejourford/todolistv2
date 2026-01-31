@@ -207,6 +207,16 @@ ul {
     background: crimson;
 }
 
+.dots {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.dots img {
+    width: 25px;
+}
+
 /* media queries */
 @media screen and (min-width: 769px) {
     .task-section {
