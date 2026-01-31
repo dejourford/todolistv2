@@ -200,7 +200,7 @@ ul {
 }
 
 .task-priority.Medium {
-    background: yellow;
+    background: orange;
 }
 
 .task-priority.High {
