@@ -106,6 +106,8 @@ export default function renderApp() {
 // create render function for rendering tasks
 export function renderTasks(project, tasksArray) {
     const tasksSection = document.querySelector(".tasks-wrapper");
+    tasksSection.innerHTML = ""
+
 
     // filter out the tasksArray for any tasks where #project-dropdown.value === project title
     console.log(tasksArray)
