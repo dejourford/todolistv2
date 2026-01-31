@@ -4,6 +4,7 @@ import tomorrow from "../assets/icons/tomorrow.svg"
 import thisWeek from "../assets/icons/this-week.svg"
 import upcoming from "../assets/icons/upcoming.svg"
 import completed from "../assets/icons/completed.svg"
+import dotsImg from "../assets/icons/dots.svg"
 
 function renderNavigation() {
     // page title
@@ -145,9 +146,15 @@ export function renderTasks(project, tasksArray) {
         priority.classList.add("task-priority", task["task-priority"]);
         priority.textContent = task["task-priority"];
 
+        const button = document.createElement("button");
+        button.classList.add("dots")
+        const dots = document.createElement("img");
+        dots.src = dotsImg;
+
         wrapperLeft.append(checkbox, title, description)
-        wrapperRight.append(date, priority);
-        
+        wrapperRight.append(date, priority, button);
+        button.append(dots);
+
         card.append(wrapperLeft, wrapperRight);
 
         tasksSection.append(card);
