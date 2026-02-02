@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
-    "start": "webpack serve --open --mode development"
+    "build": "npx webpack",
+    "start": "npx webpack serve --open --mode development"
   },
   "keywords": [],
   "author": "",
