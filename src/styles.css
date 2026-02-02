@@ -183,6 +183,10 @@ ul {
 
 }
 
+.task-card p {
+    display: none;
+}
+
 .task-checkbox {
     width: 20px;
     height: 20px;
