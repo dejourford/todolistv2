@@ -92,6 +92,15 @@ export default function initAppEvents() {
         }
     })
 
+    // listener for elipses dots
+document.addEventListener("click", (e) => {
+  const dots = e.target.closest(".dots");
+  if (!dots) return;
+
+  console.log(dots);
+});
+
+
 }
 
 // function for getting current project
