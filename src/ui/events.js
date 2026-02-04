@@ -1,5 +1,5 @@
 import plusIcon from "../assets/icons/plus.svg"
-import { getTasksFromLocalStorage } from "../modules/storage";
+import { getTasksFromLocalStorage, removeItemFromLocalStorage } from "../modules/storage";
 import { closeModal, createModal, openModal, renderModifyTask } from "./modal";
 import { renderTasks } from "./render";
 
@@ -107,6 +107,8 @@ export default function initAppEvents() {
 
     // listener for task edit button
     document.addEventListener("click", (e) => {
+        // e.preventDefault();
+        
         const editButton = e.target.closest(".edit-task-button");
 
         if (!editButton) return;
@@ -116,6 +118,26 @@ export default function initAppEvents() {
         openModal("add-task", modalId)
     })
 
+
+    // listener for delete task button
+    document.addEventListener("click", (e) => {
+        
+        const deleteTaskButton = e.target.closest(".delete-task-button");
+        console.log(deleteTaskButton)
+
+        if (!deleteTaskButton) return;
+
+        if (deleteTaskButton) {
+            e.preventDefault()
+            // remove item from local storage
+        const itemToBeRemovedID = deleteTaskButton.parentNode.dataset.id
+        console.log(itemToBeRemovedID)
+
+        removeItemFromLocalStorage(itemToBeRemovedID)
+        closeModal()
+        }
+        
+    })
 
 }
 
