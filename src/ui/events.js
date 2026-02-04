@@ -1,10 +1,10 @@
 import plusIcon from "../assets/icons/plus.svg"
 import { getTasksFromLocalStorage } from "../modules/storage";
-import { closeModal, createModal, openModal } from "./modal";
+import { closeModal, createModal, openModal, renderModifyTask } from "./modal";
 import { renderTasks } from "./render";
 
 export default function initAppEvents() {
-
+    createModal();
 
     // create function to show respective content when clicked
     function showTabContent(tabText, id) {
@@ -33,7 +33,7 @@ export default function initAppEvents() {
         addTaskButton.addEventListener("click", (e) => {
             if (!document.querySelector(".modal-overlay")) {
 
-                createModal();
+                // createModal();
                 console.log(e.currentTarget.dataset.modal)
             }
             openModal(e.currentTarget.dataset.modal)
@@ -93,12 +93,15 @@ export default function initAppEvents() {
     })
 
     // listener for elipses dots
-document.addEventListener("click", (e) => {
-  const dots = e.target.closest(".dots");
-  if (!dots) return;
+    document.addEventListener("click", (e) => {
+        const dots = e.target.closest(".dots");
+        if (!dots) return;
 
-  console.log(dots);
-});
+        console.log(dots);
+
+        // createModal();
+        openModal("modify-task")
+    });
 
 
 }
@@ -111,9 +114,9 @@ export function getCurrentProject() {
         if (tab.classList.contains("active")) {
             currentProject = tab.id;
             console.log(currentProject)
-            
+
         }
-        
+
     })
     return currentProject
 }

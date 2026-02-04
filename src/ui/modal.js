@@ -1,5 +1,8 @@
 let modalOverlay;
 let form;
+import notepadImg from "../assets/icons/notepad.svg"
+import trashcanImg from "../assets/icons/trashcan.svg"
+
 
 // create modal when add task clicked
 export function createModal() {
@@ -35,6 +38,10 @@ export function openModal(type) {
         form.id = "create-project";
         form.append(renderAddProject());
     } 
+    if (type === "modify-task") {
+        form.id = "modify-task";
+        form.append(renderModifyTask());
+    } 
 
     modalOverlay.classList.add("open");
 }
@@ -47,7 +54,8 @@ export function closeModal() {
 
 // create render task function
 function renderAddTask() {
-    const container = document.querySelector(".modal");
+    const container = document.createElement("div");
+    container.classList.add("modify-task-button-group");
 
     // create name input group
     const nameContainer = document.createElement("div");
@@ -63,6 +71,8 @@ function renderAddTask() {
     nameInput.placeholder = "Task Name";
     nameInput.required = true;
 
+    nameContainer.append(nameInputTitle, nameInput)
+
     // create description input group
     const descriptionContainer = document.createElement("div");
     descriptionContainer.classList.add("input-container");
@@ -76,6 +86,7 @@ function renderAddTask() {
     descriptionInput.name = "task-description";
     descriptionInput.placeholder = "Description";
     
+    descriptionContainer.append(descriptionTitle, descriptionInput)
 
     // create date selector
     const dateInput = document.createElement("input");
@@ -104,6 +115,8 @@ function renderAddTask() {
     projectOption.value = "inbox";
     projectOption.textContent = "Inbox";
 
+    projectDropdown.append(projectOption);
+
     // create action button group
     const actionButtonGroup = document.createElement("div");
     actionButtonGroup.classList.add("action-buttons");
@@ -120,10 +133,49 @@ function renderAddTask() {
     cancelTaskButton.classList.add("action-button")
     cancelTaskButton.textContent = "Cancel";
 
-    // assembly
-    nameContainer.append(nameInputTitle, nameInput)
-    descriptionContainer.append(descriptionTitle, descriptionInput)
-    projectDropdown.append(projectOption);
     actionButtonGroup.append(createTaskButton, cancelTaskButton)
+
+    // assembly
     container.append(nameContainer, descriptionContainer, dateInput, priorityDropdown, projectDropdown, actionButtonGroup)
+
+    return container;
 }
+
+export function renderModifyTask() {
+    const container = document.createElement("div");
+    container.classList.add("modify-task-button-group");
+
+    // create button wrapper
+    const modifyTaskButtonsWrapper = document.createElement("div");
+    modifyTaskButtonsWrapper.classList.add("modify-tasks-button-wrapper");
+    
+    // create buttons
+    const editButton = document.createElement("button");
+    editButton.classList.add("edit-task-button", "modify-button")
+    
+    const editImage = document.createElement("img");
+    editImage.src = notepadImg;
+
+    const editText = document.createElement("p");
+    editText.classList.add("edit-text");
+    editText.textContent = "Edit";
+
+    editButton.append(editImage, editText)
+
+    const deleteButton = document.createElement("button");
+    deleteButton.classList.add("delete-task-button", "modify-button")
+
+    const deleteImage = document.createElement("img")
+    deleteImage.src = trashcanImg;
+
+    const deleteText = document.createElement("p");
+    deleteText.textContent = "Delete";
+
+    deleteButton.append(deleteImage, deleteText)
+
+    // assembly
+    container.append(editButton, deleteButton);
+    return container
+}
+
+

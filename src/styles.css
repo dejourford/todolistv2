@@ -221,6 +221,24 @@ ul {
     width: 25px;
 }
 
+/* modify task button group */
+.modify-task-button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.modify-button {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+}
+
+.modify-button img {
+    width: 25px;
+}
+
 /* media queries */
 @media screen and (min-width: 769px) {
     .task-section {
