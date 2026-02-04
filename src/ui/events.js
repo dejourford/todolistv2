@@ -5,6 +5,7 @@ import { renderTasks } from "./render";
 
 export default function initAppEvents() {
     createModal();
+    let modalId;
 
     // create function to show respective content when clicked
     function showTabContent(tabText, id) {
@@ -97,11 +98,22 @@ export default function initAppEvents() {
         const dots = e.target.closest(".dots");
         if (!dots) return;
 
-        console.log(dots);
+        console.log(dots.parentNode.parentNode.dataset.id);
+        modalId = dots.parentNode.parentNode.dataset.id;
 
         // createModal();
-        openModal("modify-task")
+        openModal("modify-task", modalId);
     });
+
+    // listener for task edit button
+    document.addEventListener("click", (e) => {
+        const editButton = e.target.closest(".edit-task-button");
+
+        if (!editButton) return;
+
+        // open add task modal prefilled with info
+        openModal("add-task", modalId)
+    })
 
 
 }

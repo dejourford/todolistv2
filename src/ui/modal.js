@@ -2,13 +2,14 @@ let modalOverlay;
 let form;
 import notepadImg from "../assets/icons/notepad.svg"
 import trashcanImg from "../assets/icons/trashcan.svg"
+import { getTasksFromLocalStorage } from "../modules/storage";
 
 
 // create modal when add task clicked
 export function createModal() {
     modalOverlay = document.createElement("div");
     modalOverlay.classList.add("modal-overlay");
-    
+
     form = document.createElement("form");
     form.classList.add("modal");
 
@@ -27,21 +28,21 @@ export function createModal() {
 
 
 // create open modal function based on type
-export function openModal(type) {
+export function openModal(type, modalID) {
     form.innerHTML = "";
 
     if (type === "add-task") {
         form.id = "create-task";
-        form.append(renderAddTask());
-    } 
+        form.append(renderAddTask(modalID));
+    }
     if (type === "add-project") {
         form.id = "create-project";
         form.append(renderAddProject());
-    } 
+    }
     if (type === "modify-task") {
         form.id = "modify-task";
         form.append(renderModifyTask());
-    } 
+    }
 
     modalOverlay.classList.add("open");
 }
@@ -53,9 +54,14 @@ export function closeModal() {
 }
 
 // create render task function
-function renderAddTask() {
+function renderAddTask(modalID) {
+    // get task that matches modalID
+    const task = modalID ? getTasksFromLocalStorage().find((task) => task.id === modalID) : null;
+    console.log(task)
+
     const container = document.createElement("div");
     container.classList.add("modify-task-button-group");
+    container.dataset.id = modalID | "";
 
     // create name input group
     const nameContainer = document.createElement("div");
@@ -70,6 +76,7 @@ function renderAddTask() {
     nameInput.name = "task-name";
     nameInput.placeholder = "Task Name";
     nameInput.required = true;
+    nameInput.value = task?.["task-name"] || "";
 
     nameContainer.append(nameInputTitle, nameInput)
 
@@ -85,7 +92,9 @@ function renderAddTask() {
     descriptionInput.classList.add("description-input")
     descriptionInput.name = "task-description";
     descriptionInput.placeholder = "Description";
-    
+    descriptionInput.value = task?.["task-description"] || "";
+
+
     descriptionContainer.append(descriptionTitle, descriptionInput)
 
     // create date selector
@@ -93,6 +102,7 @@ function renderAddTask() {
     dateInput.classList.add("date-input")
     dateInput.name = "task-date"
     dateInput.type = "date";
+    dateInput.value = task?.["task-date"] || "";
     dateInput.required = true;
 
     // create priority dropdown
@@ -105,27 +115,34 @@ function renderAddTask() {
         option.value = level
         option.textContent = level;
         priorityDropdown.append(option);
+
+
     })
-    
+    priorityDropdown.value = task?.["task-priority"] || "Medium";
+
+
     // create project selector
     const projectDropdown = document.createElement("select");
     projectDropdown.id = "project-dropdown";
     projectDropdown.name = "project"
-    const projectOption = document.createElement("option");
-    projectOption.value = "inbox";
-    projectOption.textContent = "Inbox";
 
+    const projectValue = task?.project || "inbox";
+  const projectOption = document.createElement("option");
+  projectOption.value = projectValue;
+  projectOption.textContent =
+    projectValue === "inbox" ? "Inbox" : projectValue;
+    
     projectDropdown.append(projectOption);
 
     // create action button group
     const actionButtonGroup = document.createElement("div");
     actionButtonGroup.classList.add("action-buttons");
-    
-    const createTaskButton = document.createElement("button");
-    createTaskButton.classList.add("create-task")
-    createTaskButton.classList.add("action-button")
-    createTaskButton.type = "submit";
-    createTaskButton.textContent = "Create Task";
+
+    const submitButton = document.createElement("button");
+    submitButton.classList.add("create-task")
+    submitButton.classList.add("action-button")
+    submitButton.type = "submit";
+    submitButton.textContent = modalID ? "Update" : "Create Task";
 
     const cancelTaskButton = document.createElement("button");
     cancelTaskButton.type = "button";
@@ -133,7 +150,7 @@ function renderAddTask() {
     cancelTaskButton.classList.add("action-button")
     cancelTaskButton.textContent = "Cancel";
 
-    actionButtonGroup.append(createTaskButton, cancelTaskButton)
+    actionButtonGroup.append(submitButton, cancelTaskButton)
 
     // assembly
     container.append(nameContainer, descriptionContainer, dateInput, priorityDropdown, projectDropdown, actionButtonGroup)
@@ -142,17 +159,18 @@ function renderAddTask() {
 }
 
 export function renderModifyTask() {
+
     const container = document.createElement("div");
     container.classList.add("modify-task-button-group");
 
     // create button wrapper
     const modifyTaskButtonsWrapper = document.createElement("div");
     modifyTaskButtonsWrapper.classList.add("modify-tasks-button-wrapper");
-    
+
     // create buttons
     const editButton = document.createElement("button");
     editButton.classList.add("edit-task-button", "modify-button")
-    
+
     const editImage = document.createElement("img");
     editImage.src = notepadImg;
 
