@@ -12,9 +12,10 @@ export default function initFormEvents() {
 
         e.preventDefault();
 
-        const formData = new FormData(form);
-
         const data = Object.fromEntries(new FormData(form).entries());
+
+        // add id to object before adding to local storage
+        data.id = `task-${crypto.randomUUID()}`;
         console.log(data)
 
         addToLocalStorage(data)
