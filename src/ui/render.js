@@ -119,6 +119,8 @@ export function renderTasks(project, tasksArray) {
     filteredItems.forEach((task) => {
         const card = document.createElement("div");
         card.classList.add("task-card");
+        card.dataset.id = task.id;
+
 
         // create wrapper for title and description
         const wrapperLeft = document.createElement("div");
