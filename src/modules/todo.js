@@ -13,12 +13,18 @@ export default function initFormEvents() {
         e.preventDefault();
 
         const data = Object.fromEntries(new FormData(form).entries());
+        console.log(data)
+        const taskId = form.dataset.id;
 
-        // add id to object before adding to local storage
-        data.id = `task-${crypto.randomUUID()}`;
+        const task = {
+            ...data, 
+            id: taskId || `task-${crypto.randomUUID()}`
+        }
+
+
         console.log(data)
 
-        addToLocalStorage(data)
+        addToLocalStorage(task)
 
         closeModal();
 

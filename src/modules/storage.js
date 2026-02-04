@@ -3,11 +3,26 @@ export function addToLocalStorage(task) {
     const ls = localStorage;
 
     // get current tasks in ls and if no tasks, then create new array
-    const tasks =  JSON.parse(ls.getItem("tasks")) || [];
-    console.log(tasks)
+    const tasks = JSON.parse(ls.getItem("tasks")) || [];
+    console.log("task:", task)
+    console.log("tasks:", tasks)
 
-    // push new task to tasks array
+
+
+    const index = tasks.findIndex(t => t.id === task.id);
+    console.log(index)
+
+  if (index === -1) {
+    // New task
     tasks.push(task);
+  } else {
+    // Update existing task
+    tasks[index] = task;
+  }
+
+
+
+
 
     // stringify tasks array and store back in ls
     ls.setItem("tasks", JSON.stringify(tasks));

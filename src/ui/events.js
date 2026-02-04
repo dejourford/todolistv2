@@ -112,6 +112,7 @@ export default function initAppEvents() {
         if (!editButton) return;
 
         // open add task modal prefilled with info
+        modalId = editButton.parentNode.dataset.id;
         openModal("add-task", modalId)
     })
 

@@ -41,7 +41,8 @@ export function openModal(type, modalID) {
     }
     if (type === "modify-task") {
         form.id = "modify-task";
-        form.append(renderModifyTask());
+        form.dataset.id = modalID;
+        form.append(renderModifyTask(modalID));
     }
 
     modalOverlay.classList.add("open");
@@ -158,10 +159,12 @@ function renderAddTask(modalID) {
     return container;
 }
 
-export function renderModifyTask() {
+export function renderModifyTask(modalID) {
+    console.log(modalID)
 
     const container = document.createElement("div");
     container.classList.add("modify-task-button-group");
+    container.dataset.id = modalID;
 
     // create button wrapper
     const modifyTaskButtonsWrapper = document.createElement("div");
