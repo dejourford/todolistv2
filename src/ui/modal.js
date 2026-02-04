@@ -118,7 +118,7 @@ function renderAddTask(modalID) {
 
 
     })
-    priorityDropdown.value = task?.["task-priority"] || "Medium";
+    priorityDropdown.value = task?.["task-priority"] || "Low";
 
 
     // create project selector
@@ -127,11 +127,11 @@ function renderAddTask(modalID) {
     projectDropdown.name = "project"
 
     const projectValue = task?.project || "inbox";
-  const projectOption = document.createElement("option");
-  projectOption.value = projectValue;
-  projectOption.textContent =
-    projectValue === "inbox" ? "Inbox" : projectValue;
-    
+    const projectOption = document.createElement("option");
+    projectOption.value = projectValue;
+    projectOption.textContent =
+        projectValue === "inbox" ? "Inbox" : projectValue;
+
     projectDropdown.append(projectOption);
 
     // create action button group
