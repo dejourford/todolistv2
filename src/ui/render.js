@@ -172,6 +172,11 @@ export function renderTasks(project, tasksArray) {
         createTaskCard(filteredItems)
     }
 
+    if (project === "completed") {
+        const filteredItems = tasksArray.filter((item) => item.complete === true)
+        createTaskCard(filteredItems)
+    }
+
     // function to create task card
     function createTaskCard(filteredArrayItems) {
         filteredArrayItems.forEach((task) => {
