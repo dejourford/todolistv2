@@ -101,15 +101,11 @@ export default function initAppEvents() {
 
         if (!taskCheckbox) return;
 
-        if (taskCheckbox && getCurrentProject() === "completed") {
-            // clear DOM
-            document.querySelector(".tasks-wrapper").innerHTML = ""
-        }
-
         if (taskCheckbox) {
             e.preventDefault()
             
-            
+            // clear DOM
+            document.querySelector(".tasks-wrapper").innerHTML = ""
            
 
             console.log(taskCheckbox.checked);
