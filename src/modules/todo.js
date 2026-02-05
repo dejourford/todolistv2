@@ -18,7 +18,8 @@ export default function initFormEvents() {
 
         const task = {
             ...data, 
-            id: taskId || `task-${crypto.randomUUID()}`
+            id: taskId || `task-${crypto.randomUUID()}`,
+            complete: false
         }
 
 

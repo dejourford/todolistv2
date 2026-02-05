@@ -1,5 +1,5 @@
 import plusIcon from "../assets/icons/plus.svg"
-import { getTasksFromLocalStorage, removeItemFromLocalStorage } from "../modules/storage";
+import { addToLocalStorage, getTasksFromLocalStorage, removeItemFromLocalStorage } from "../modules/storage";
 import { closeModal, createModal, openModal, renderModifyTask } from "./modal";
 import { renderTasks } from "./render";
 
@@ -93,6 +93,40 @@ export default function initAppEvents() {
         }
     })
 
+    // listener for checkbox
+    document.addEventListener("change", (e) => {
+
+        // target checkbox
+        const taskCheckbox = e.target.closest(".task-checkbox");
+
+        if (!taskCheckbox) return;
+
+        if (taskCheckbox) {
+            e.preventDefault()
+            
+            console.log(taskCheckbox.checked);
+            
+            // modify the completed property of the checked element to true
+            const taskIdToSetCompleted = e.target.parentNode.parentNode.dataset.id
+            console.log(taskIdToSetCompleted)
+
+            // filter the tasks in local storage data by the task that matches the id
+            const taskToSetComplete = getTasksFromLocalStorage().find((task) => task.id === taskIdToSetCompleted)
+            console.log(getTasksFromLocalStorage().find((task) => task.id === taskIdToSetCompleted))
+
+            // change the completed property to true
+            taskToSetComplete.complete = taskCheckbox.checked;
+
+            // render task cards with the completed property set to true
+            console.log(taskToSetComplete)
+
+            // add item to local storage
+            addToLocalStorage(taskToSetComplete)
+            // closeModal()
+        }
+
+    })
+
     // listener for elipses dots
     document.addEventListener("click", (e) => {
         const dots = e.target.closest(".dots");
@@ -108,7 +142,7 @@ export default function initAppEvents() {
     // listener for task edit button
     document.addEventListener("click", (e) => {
         // e.preventDefault();
-        
+
         const editButton = e.target.closest(".edit-task-button");
 
         if (!editButton) return;
@@ -121,7 +155,7 @@ export default function initAppEvents() {
 
     // listener for delete task button
     document.addEventListener("click", (e) => {
-        
+
         const deleteTaskButton = e.target.closest(".delete-task-button");
         console.log(deleteTaskButton)
 
@@ -130,13 +164,13 @@ export default function initAppEvents() {
         if (deleteTaskButton) {
             e.preventDefault()
             // remove item from local storage
-        const itemToBeRemovedID = deleteTaskButton.parentNode.dataset.id
-        console.log(itemToBeRemovedID)
+            const itemToBeRemovedID = deleteTaskButton.parentNode.dataset.id
+            console.log(itemToBeRemovedID)
 
-        removeItemFromLocalStorage(itemToBeRemovedID)
-        closeModal()
+            removeItemFromLocalStorage(itemToBeRemovedID)
+            closeModal()
         }
-        
+
     })
 
 }
