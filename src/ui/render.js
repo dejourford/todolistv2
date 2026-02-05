@@ -113,52 +113,75 @@ export function renderTasks(project, tasksArray) {
     // filter out the tasksArray for any tasks where #project-dropdown.value === project title
     console.log(tasksArray)
     console.log(project)
-    const filteredItems = tasksArray.filter((item) => item.project === project)
-    console.log(filteredItems);
 
-    filteredItems.forEach((task) => {
-        const card = document.createElement("div");
-        card.classList.add("task-card");
-        card.dataset.id = task.id;
+    // createa functionality for which nav tab is clicked
+    // NEED TO DEFINE THE OTHER IF STATEMENTS FOR THE NAV TABS
+    if (project === "today") {
+        const today = new Date();
+        const localDate =  new Date(
+            today.getFullYear(),
+            today.getMonth(),
+            today.getDate()
+        );
+        const formattedDate = localDate.toISOString().split("T")[0];
+        
+        const filteredItems = tasksArray.filter((item) => item["task-date"] === formattedDate);
+        console.log(formattedDate)
+        console.log(filteredItems);
+        createTaskCard(filteredItems)
+    }
+    if (project === "inbox") {
+        const filteredItems = tasksArray.filter((item) => item.project === project)
+        console.log(filteredItems);
+        createTaskCard(filteredItems)
+    }
+
+    // function to create task card
+    function createTaskCard(filteredArrayItems) {
+        filteredArrayItems.forEach((task) => {
+            const card = document.createElement("div");
+            card.classList.add("task-card");
+            card.dataset.id = task.id;
 
 
-        // create wrapper for title and description
-        const wrapperLeft = document.createElement("div");
-        wrapperLeft.classList.add("card-wrapper", "card-left");
+            // create wrapper for title and description
+            const wrapperLeft = document.createElement("div");
+            wrapperLeft.classList.add("card-wrapper", "card-left");
 
-        const checkbox = document.createElement("input");
-        checkbox.classList.add("task-checkbox");
-        checkbox.type = "checkbox";
+            const checkbox = document.createElement("input");
+            checkbox.classList.add("task-checkbox");
+            checkbox.type = "checkbox";
 
-        const title = document.createElement("h3");
-        title.textContent = task["task-name"];
+            const title = document.createElement("h3");
+            title.textContent = task["task-name"];
 
-        const description = document.createElement("p");
-        description.textContent = task["task-description"];
+            const description = document.createElement("p");
+            description.textContent = task["task-description"];
 
-        // create wrapper for date, priority, and elipses
-        const wrapperRight = document.createElement("div");
-        wrapperRight.classList.add("card-wrapper", "card-right")
+            // create wrapper for date, priority, and elipses
+            const wrapperRight = document.createElement("div");
+            wrapperRight.classList.add("card-wrapper", "card-right")
 
-        const date = document.createElement("span");
-        date.classList.add("task-date");
-        date.textContent = task["task-date"];
+            const date = document.createElement("span");
+            date.classList.add("task-date");
+            date.textContent = task["task-date"];
 
-        const priority = document.createElement("span");
-        priority.classList.add("task-priority", task["task-priority"]);
-        priority.textContent = task["task-priority"];
+            const priority = document.createElement("span");
+            priority.classList.add("task-priority", task["task-priority"]);
+            priority.textContent = task["task-priority"];
 
-        const button = document.createElement("button");
-        button.classList.add("dots")
-        const dots = document.createElement("img");
-        dots.src = dotsImg;
+            const button = document.createElement("button");
+            button.classList.add("dots")
+            const dots = document.createElement("img");
+            dots.src = dotsImg;
 
-        wrapperLeft.append(checkbox, title, description)
-        wrapperRight.append(date, priority, button);
-        button.append(dots);
+            wrapperLeft.append(checkbox, title, description)
+            wrapperRight.append(date, priority, button);
+            button.append(dots);
 
-        card.append(wrapperLeft, wrapperRight);
+            card.append(wrapperLeft, wrapperRight);
 
-        tasksSection.append(card);
-    })
+            tasksSection.append(card);
+        })
+    }
 }
