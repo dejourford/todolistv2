@@ -5,6 +5,7 @@ import thisWeek from "../assets/icons/this-week.svg"
 import upcoming from "../assets/icons/upcoming.svg"
 import completed from "../assets/icons/completed.svg"
 import dotsImg from "../assets/icons/dots.svg"
+import { getCurrentProject } from "./events"
 
 function renderNavigation() {
     // page title
@@ -179,7 +180,11 @@ export function renderTasks(project, tasksArray) {
 
     // function to create task card
     function createTaskCard(filteredArrayItems) {
+        
         filteredArrayItems.forEach((task) => {
+            // if task.complete = true, then don't create card.
+            if (task.complete === true && getCurrentProject() !== "completed") return;
+            
             const card = document.createElement("div");
             card.classList.add("task-card");
             card.dataset.id = task.id;
