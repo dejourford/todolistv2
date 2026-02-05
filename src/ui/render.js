@@ -114,24 +114,60 @@ export function renderTasks(project, tasksArray) {
     console.log(tasksArray)
     console.log(project)
 
-    // createa functionality for which nav tab is clicked
+    // create function for dates
+    function formatLocalDate(d) {
+        return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+    }
+
     // NEED TO DEFINE THE OTHER IF STATEMENTS FOR THE NAV TABS
+    function addDaysToDate(dateString, days) {
+        const [year, month, day] = dateString.split("-").map(Number);
+        const d = new Date(year, month - 1, day);
+        d.setDate(d.getDate() + days);
+
+        return formatLocalDate(d);
+    }
+
+    const today = new Date();
+    const formattedDate = formatLocalDate(today);
+
     if (project === "today") {
-        const today = new Date();
-        const localDate =  new Date(
-            today.getFullYear(),
-            today.getMonth(),
-            today.getDate()
-        );
-        const formattedDate = localDate.toISOString().split("T")[0];
-        
+
         const filteredItems = tasksArray.filter((item) => item["task-date"] === formattedDate);
         console.log(formattedDate)
         console.log(filteredItems);
         createTaskCard(filteredItems)
     }
+
+    if (project === "tomorrow") {
+        const tomorrow = addDaysToDate(formattedDate, 1)
+        const filteredItems = tasksArray.filter((item) => item["task-date"] === tomorrow)
+        console.log(filteredItems);
+        createTaskCard(filteredItems)
+    }
+
+    if (project === "thisWeek") {
+        // filter array items if their date falls within start and end date ranges
+        const startDate = formattedDate;
+        const endDate = addDaysToDate(formattedDate, 7)
+
+        
+        const filteredItems = tasksArray.filter((item) =>
+            item["task-date"] >= startDate &&
+            item["task-date"] <= endDate
+        );
+        console.log(filteredItems);
+        createTaskCard(filteredItems)
+    }
+
     if (project === "inbox") {
         const filteredItems = tasksArray.filter((item) => item.project === project)
+        console.log(filteredItems);
+        createTaskCard(filteredItems)
+    }
+
+    if (project === "upcoming") {
+        const filteredItems = tasksArray.filter((item) => item["task-date"] >= formattedDate)
         console.log(filteredItems);
         createTaskCard(filteredItems)
     }
