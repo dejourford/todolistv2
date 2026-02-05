@@ -224,7 +224,9 @@ export function renderTasks(project, tasksArray) {
 
             wrapperLeft.append(checkbox, title, description)
             wrapperRight.append(date, priority, button);
-            button.append(dots);
+            if (!task.complete) {
+                button.append(dots);
+            }
 
             card.append(wrapperLeft, wrapperRight);
 
