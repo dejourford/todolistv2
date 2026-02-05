@@ -192,6 +192,7 @@ export function renderTasks(project, tasksArray) {
             const checkbox = document.createElement("input");
             checkbox.classList.add("task-checkbox");
             checkbox.type = "checkbox";
+            checkbox.checked = task.complete;
 
             const title = document.createElement("h3");
             title.textContent = task["task-name"];
