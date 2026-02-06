@@ -255,6 +255,44 @@ ul {
     width: 25px;
 }
 
+/* add project modal */
+.add-project-modal-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.add-project-modal-wrapper p {
+    color: black;
+    font-weight: 800;
+    font-size: 18px;
+}
+
+.add-project-modal-wrapper input {
+    border: none;
+    border-bottom: 1px solid gray;
+    outline: none;
+    font-size: 16px;
+}
+
+.add-project-button-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.add-project-button-group button {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid black;
+    border-radius: 0.2rem;
+}
+
+.add-projecet-modal-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
 /* media queries */
 @media screen and (min-width: 769px) {
     .task-section {
