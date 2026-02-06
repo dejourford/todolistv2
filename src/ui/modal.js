@@ -220,9 +220,11 @@ function renderAddProject() {
 
     const createProjectButton = document.createElement("button");
     createProjectButton.textContent = "Create Project";
+    createProjectButton.classList.add("create-project-button");
 
     const cancelBtn = document.createElement("button")
     cancelBtn.textContent = "Cancel";
+    cancelBtn.classList.add("cancel-project-button");
 
     buttonGroup.append(createProjectButton, cancelBtn);
 
