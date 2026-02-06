@@ -44,7 +44,6 @@ export function openModal(type, modalID) {
         form.dataset.id = modalID;
         form.append(renderModifyTask(modalID));
     }
-
     modalOverlay.classList.add("open");
 }
 
@@ -199,4 +198,36 @@ export function renderModifyTask(modalID) {
     return container
 }
 
+function renderAddProject() {
+    const container = document.createElement("div");
+    container.classList.add("add-project-modal-wrapper")
+
+
+    const inputGroup = document.createElement("div");
+    inputGroup.classList.add("add-projecet-modal-input-group");
+
+
+    const projectNameText = document.createElement("p");
+    projectNameText.textContent = "Name";
+
+    const projectNameInput = document.createElement("input");
+    projectNameInput.placeholder = "Project Name";
+
+    inputGroup.append(projectNameText, projectNameInput);
+
+    const buttonGroup = document.createElement("div");
+    buttonGroup.classList.add("add-project-button-group");
+
+    const createProjectButton = document.createElement("button");
+    createProjectButton.textContent = "Create Project";
+
+    const cancelBtn = document.createElement("button")
+    cancelBtn.textContent = "Cancel";
+
+    buttonGroup.append(createProjectButton, cancelBtn);
+
+    container.append(inputGroup, buttonGroup);
+
+    return container
+}
 

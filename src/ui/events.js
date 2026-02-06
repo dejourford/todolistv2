@@ -66,7 +66,13 @@ export default function initAppEvents() {
 
     // listener for active navigation tab clicks
     document.querySelectorAll(".nav-item").forEach((item) => {
-        item.addEventListener("click", () => {
+        item.addEventListener("click", (e) => {
+
+            if (e.target.closest("#addProject")) {
+                console.log("project button clicked")
+                openModal("add-project", )
+                return
+            };
 
             document.querySelectorAll(".nav-item").forEach((nav) => {
                 nav.classList.remove("active");
