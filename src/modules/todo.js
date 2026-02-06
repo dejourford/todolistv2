@@ -2,7 +2,7 @@
 import { getCurrentProject } from "../ui/events";
 import { closeModal } from "../ui/modal";
 import { renderTasks } from "../ui/render";
-import { addToLocalStorage, getTasksFromLocalStorage } from "./storage";
+import { addProjectToLocalStorage, addToLocalStorage, getProjectsFromLocalStorage, getTasksFromLocalStorage } from "./storage";
 
 export default function initFormEvents() {
 
@@ -17,7 +17,7 @@ export default function initFormEvents() {
         const taskId = form.dataset.id;
 
         const task = {
-            ...data, 
+            ...data,
             id: taskId || `task-${crypto.randomUUID()}`,
             complete: false
         }
@@ -31,6 +31,35 @@ export default function initFormEvents() {
 
         // call render function and pass through getCurrentProject() and getTasksFromLocalStorage()
         renderTasks(getCurrentProject(), getTasksFromLocalStorage())
+    })
+
+
+    // listener for create project button
+    document.addEventListener("click", (e) => {
+
+        const createProjectButton = e.target.closest(".create-project-button");
+        console.log(createProjectButton)
+
+        if (!createProjectButton) return;
+
+        e.preventDefault()
+
+        console.log("project created")
+
+        const form = createProjectButton.parentNode.parentNode.parentNode
+        console.log(form)
+        const data = Object.fromEntries(new FormData(form).entries());
+        console.log(data)
+
+
+        const project = {
+            projectTitle: data["project-title"],
+        }
+
+        console.log(project)
+
+        addProjectToLocalStorage(project)
+
     })
 }
 

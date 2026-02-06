@@ -212,6 +212,8 @@ function renderAddProject() {
 
     const projectNameInput = document.createElement("input");
     projectNameInput.placeholder = "Project Name";
+    projectNameInput.required = true;
+    projectNameInput.name = "project-title"
 
     inputGroup.append(projectNameText, projectNameInput);
 
@@ -221,6 +223,7 @@ function renderAddProject() {
     const createProjectButton = document.createElement("button");
     createProjectButton.textContent = "Create Project";
     createProjectButton.classList.add("create-project-button");
+    createProjectButton.type = "submit"
 
     const cancelBtn = document.createElement("button")
     cancelBtn.textContent = "Cancel";
