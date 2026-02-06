@@ -103,13 +103,13 @@ export default function initAppEvents() {
 
         if (taskCheckbox) {
             e.preventDefault()
-            
+
             // clear DOM
             document.querySelector(".tasks-wrapper").innerHTML = ""
-           
+            
 
             console.log(taskCheckbox.checked);
-            
+
             // modify the completed property of the checked element to true
             const taskIdToSetCompleted = e.target.parentNode.parentNode.dataset.id
             console.log(taskIdToSetCompleted)
@@ -127,6 +127,7 @@ export default function initAppEvents() {
             // add item to local storage
             addToLocalStorage(taskToSetComplete)
             // closeModal()
+            renderTasks(getCurrentProject(), getTasksFromLocalStorage())
         }
 
     })
@@ -174,6 +175,32 @@ export default function initAppEvents() {
             removeItemFromLocalStorage(itemToBeRemovedID)
             closeModal()
         }
+
+    })
+
+    // listener for delete all button
+    document.addEventListener("click", (e) => {
+
+        const deleteButton = e.target.closest(".delete-button");
+        console.log(deleteButton)
+
+        if (!deleteButton) return;
+
+        e.preventDefault()
+        // get tasks in storage and filter out the ones that have complete === true
+        const allTasks = getTasksFromLocalStorage()
+        console.log(allTasks)
+
+        //    keep only incomplete tasks
+        const remainingTasks = allTasks.filter(
+            task => task.complete !== true
+        )
+
+        console.log(remainingTasks)
+        localStorage.setItem("tasks", JSON.stringify(remainingTasks));
+
+        renderTasks(getCurrentProject(), remainingTasks)
+
 
     })
 
