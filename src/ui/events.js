@@ -210,6 +210,20 @@ export default function initAppEvents() {
 
     })
 
+    // listener for create project button
+    document.addEventListener("click", (e) => {
+
+        const createProjectButton = e.target.closest(".create-project-button");
+        console.log(createProjectButton)
+
+        if (!createProjectButton) return;
+
+        e.preventDefault()
+        
+
+
+    })
+
 }
 
 // function for getting current project
