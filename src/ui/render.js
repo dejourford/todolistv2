@@ -5,6 +5,7 @@ import thisWeek from "../assets/icons/this-week.svg"
 import upcoming from "../assets/icons/upcoming.svg"
 import completed from "../assets/icons/completed.svg"
 import dotsImg from "../assets/icons/dots.svg"
+import plusImage from "../assets/icons/plus-white.svg"
 import { getCurrentProject } from "./events"
 
 function renderNavigation() {
@@ -51,6 +52,10 @@ function renderNavigation() {
             "id": "completed",
             "title": "Completed",
             "imgPath": completed,
+        },
+        {
+            "id": "addProject",
+            "imgPath": plusImage,
         },
     ]
 
