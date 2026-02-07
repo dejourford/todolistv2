@@ -7,6 +7,7 @@ import completed from "../assets/icons/completed.svg"
 import dotsImg from "../assets/icons/dots.svg"
 import plusImage from "../assets/icons/plus-white.svg"
 import { getCurrentProject } from "./events"
+import { getProjectsFromLocalStorage } from "../modules/storage"
 
 function renderNavigation() {
     // page title
@@ -93,6 +94,25 @@ function renderNavigation() {
     })
 
 
+    // // nav items for projects
+    // const projects = getProjectsFromLocalStorage();
+    // console.log(projects)
+
+    // projects.forEach((project) => {
+    //     // nav item element (li)
+    //     const navItem = document.createElement("li");
+    //     navItem.classList.add("nav-item", "project");
+
+    //     // nav item text (p)
+    //     const navItemText = document.createElement("p");
+    //     navItemText.classList.add("nav-item-text")
+    //     navItemText.textContent = project["projectTitle"];
+
+    //     // assembly
+    //     navItem.append(navItemText)
+    //     ulElement.append(navItem)
+    // })
+
     // assembly
     nav.append(ulElement)
     sidebar.append(title, nav)
@@ -157,7 +177,7 @@ export function renderTasks(project, tasksArray) {
         const startDate = formattedDate;
         const endDate = addDaysToDate(formattedDate, 7)
 
-        
+
         const filteredItems = tasksArray.filter((item) =>
             item["task-date"] >= startDate &&
             item["task-date"] <= endDate
@@ -185,11 +205,11 @@ export function renderTasks(project, tasksArray) {
 
     // function to create task card
     function createTaskCard(filteredArrayItems) {
-        
+
         filteredArrayItems.forEach((task) => {
             // if task.complete = true, then don't create card.
             if (task.complete === true && getCurrentProject() !== "completed") return;
-            
+
             const card = document.createElement("div");
             card.classList.add("task-card");
             card.dataset.id = task.id;
@@ -238,4 +258,43 @@ export function renderTasks(project, tasksArray) {
             tasksSection.append(card);
         })
     }
+}
+
+// create function to renderProjects
+export function renderProjects() {
+    // clear dom before appending
+    document.querySelectorAll(".nav-item.project").forEach((item) => {
+        item.remove();
+    })
+    
+    const nav = document.querySelector("nav");
+    const sidebar = document.querySelector(".sidebar")
+    const ulElement = document.querySelector("nav ul") || document.createElement("ul");
+
+    // nav items for projects
+    const projects = getProjectsFromLocalStorage();
+    console.log(projects)
+
+    projects.forEach((project) => {
+        // nav item element (li)
+        const navItem = document.createElement("li");
+        navItem.classList.add("nav-item", "project");
+
+        // nav item text (p)
+        const navItemText = document.createElement("p");
+        navItemText.classList.add("nav-item-text")
+        navItemText.textContent = project["projectTitle"];
+
+        // assembly
+        navItem.append(navItemText)
+        ulElement.append(navItem)
+    })
+
+    
+
+    // assembly
+    nav.append(ulElement)
+    sidebar.append(nav)
+
+    // return sidebar
 }

@@ -99,6 +99,15 @@ export default function initAppEvents() {
         }
     })
 
+    // listener for project cancel button
+    document.addEventListener("click", (e) => {
+        if (e.target.closest(".cancel-project-button")) {
+
+            e.preventDefault();
+            closeModal();
+        }
+    })
+
     // listener for checkbox
     document.addEventListener("change", (e) => {
 
