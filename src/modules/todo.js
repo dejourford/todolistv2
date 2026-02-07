@@ -42,8 +42,12 @@ export default function initFormEvents() {
 
         if (!createProjectButton) return;
 
+        
         e.preventDefault()
-
+        
+        const projectInput = document.querySelector(".project-input");
+        if (projectInput.value === "") return;
+        
         console.log("project created")
 
         const form = createProjectButton.parentNode.parentNode.parentNode

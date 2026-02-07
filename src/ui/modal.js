@@ -212,8 +212,9 @@ function renderAddProject() {
 
     const projectNameInput = document.createElement("input");
     projectNameInput.placeholder = "Project Name";
-    projectNameInput.required = true;
     projectNameInput.name = "project-title"
+    projectNameInput.classList.add("project-input");
+    projectNameInput.required = true;
 
     inputGroup.append(projectNameText, projectNameInput);
 
