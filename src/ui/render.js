@@ -280,6 +280,7 @@ export function renderProjects() {
         // nav item element (li)
         const navItem = document.createElement("li");
         navItem.classList.add("nav-item", "project");
+        navItem.id = project.projectTitle
 
         // nav item text (p)
         const navItemText = document.createElement("p");
