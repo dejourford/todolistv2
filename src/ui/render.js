@@ -128,6 +128,7 @@ export default function renderApp() {
     taskSection.classList.add("task-section");
 
     app.append(renderNavigation(), taskSection);
+    renderProjects();
 }
 
 // create render function for rendering tasks

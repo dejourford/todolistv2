@@ -128,16 +128,28 @@ function renderAddTask(modalID) {
 
     // create for loop to create project options
     let projectValue;
+
     const projects = getProjectsFromLocalStorage();
-    projects.forEach((project) => {
-        console.log(project)
-        const projectOption = document.createElement("option");
-        projectOption.value = project.projectTitle;
-        projectOption.textContent =
-            projectValue === "Inbox" ? "Inbox" : project.projectTitle;
-    
-        projectDropdown.append(projectOption);
-    })
+    console.log(projects)
+
+    const projectOption = document.createElement("option");
+    projectOption.value = "Inbox";
+    projectOption.textContent = "Inbox";
+
+    projectDropdown.append(projectOption);
+
+    if (projects.length !== 0) {
+        console.log("this is correct")
+        projects.forEach((project) => {
+            console.log(project)
+            const projectOption = document.createElement("option");
+            projectOption.value = project.projectTitle;
+            projectOption.textContent =
+                project.projectTitle;
+
+            projectDropdown.append(projectOption);
+        })
+    }
 
     // create action button group
     const actionButtonGroup = document.createElement("div");
