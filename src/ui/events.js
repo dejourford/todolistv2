@@ -89,14 +89,17 @@ export default function initAppEvents() {
 
             if (e.target.classList.contains("project")) {
                 console.log("correcT!")
-                // renderTasks(getCurrentProject(), getProjectsFromLocalStorage())
+                
                 console.log(getProjectsFromLocalStorage())
 
                 const arrayToFilterForProjects = getTasksFromLocalStorage();
                 console.log(arrayToFilterForProjects)
 
-                const filteredArray = arrayToFilterForProjects.filter((item) => item.project === getCurrentProject())
+                const filteredArray = arrayToFilterForProjects.filter((item) => item.project === `${getCurrentProject()}`)
                 console.log(filteredArray)
+                console.log(getCurrentProject())
+
+                renderTasks(getCurrentProject(), filteredArray)
             }
             
             

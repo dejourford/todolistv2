@@ -202,6 +202,9 @@ export function renderTasks(project, tasksArray) {
     if (project === "completed") {
         const filteredItems = tasksArray.filter((item) => item.complete === true)
         createTaskCard(filteredItems)
+    } else{
+        const filteredItems = tasksArray.filter((item)=> item.project === `${project}`)
+        createTaskCard(filteredItems)
     }
 
     // function to create task card
