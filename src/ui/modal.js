@@ -137,7 +137,7 @@ function renderAddTask(modalID) {
     projectOption.textContent =
         "Inbox";
     projectDropdown.value = "Inbox";
-        projectDropdown.append(projectOption);
+    projectDropdown.append(projectOption);
 
     if (projects.length !== 0) {
         console.log("this is correct")
@@ -151,15 +151,15 @@ function renderAddTask(modalID) {
             projectDropdown.append(projectOption);
         })
     }
-    
-    // get project task from modal id
-    console.log(modalID)
 
-    console.log(getTasksFromLocalStorage())
-    const optionSelectedFromTask = getTasksFromLocalStorage().find((task) => task.id === modalID);
-   
-console.log(optionSelectedFromTask)
-projectDropdown.value = optionSelectedFromTask.project
+    // get project task from modal id
+    // console.log(modalID)
+
+    // console.log(getTasksFromLocalStorage())
+    // const optionSelectedFromTask = getTasksFromLocalStorage().find((task) => task.id === modalID);
+
+    // console.log(optionSelectedFromTask)
+    // projectDropdown.value = optionSelectedFromTask.project
     // const projectOption = document.createElement("option");
     // getProjectsFromLocalStorage().forEach((project) => {
 

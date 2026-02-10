@@ -98,6 +98,8 @@ export default function initAppEvents() {
                 const filteredArray = arrayToFilterForProjects.filter((item) => item.project === getCurrentProject())
                 console.log(filteredArray)
             }
+            
+            
             renderTasks(getCurrentProject(), getTasksFromLocalStorage())
         })
     })

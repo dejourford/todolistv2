@@ -188,7 +188,7 @@ export function renderTasks(project, tasksArray) {
     }
 
     if (project === "inbox") {
-        const filteredItems = tasksArray.filter((item) => item.project === project)
+        const filteredItems = tasksArray.filter((item) => item.project === "Inbox")
         console.log(filteredItems);
         createTaskCard(filteredItems)
     }
