@@ -2,7 +2,7 @@ let modalOverlay;
 let form;
 import notepadImg from "../assets/icons/notepad.svg"
 import trashcanImg from "../assets/icons/trashcan.svg"
-import { getTasksFromLocalStorage } from "../modules/storage";
+import { getProjectsFromLocalStorage, getTasksFromLocalStorage } from "../modules/storage";
 
 
 // create modal when add task clicked
@@ -126,13 +126,18 @@ function renderAddTask(modalID) {
     projectDropdown.id = "project-dropdown";
     projectDropdown.name = "project"
 
-    const projectValue = task?.project || "inbox";
-    const projectOption = document.createElement("option");
-    projectOption.value = projectValue;
-    projectOption.textContent =
-        projectValue === "inbox" ? "Inbox" : projectValue;
-
-    projectDropdown.append(projectOption);
+    // create for loop to create project options
+    let projectValue;
+    const projects = getProjectsFromLocalStorage();
+    projects.forEach((project) => {
+        console.log(project)
+        const projectOption = document.createElement("option");
+        projectOption.value = project.projectTitle;
+        projectOption.textContent =
+            projectValue === "Inbox" ? "Inbox" : project.projectTitle;
+    
+        projectDropdown.append(projectOption);
+    })
 
     // create action button group
     const actionButtonGroup = document.createElement("div");
