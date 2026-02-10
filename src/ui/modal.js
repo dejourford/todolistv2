@@ -57,7 +57,6 @@ export function closeModal() {
 function renderAddTask(modalID) {
     // get task that matches modalID
     const task = modalID ? getTasksFromLocalStorage().find((task) => task.id === modalID) : null;
-    console.log(task)
 
     const container = document.createElement("div");
     container.classList.add("modify-task-button-group");
@@ -124,50 +123,31 @@ function renderAddTask(modalID) {
     // create project selector
     const projectDropdown = document.createElement("select");
     projectDropdown.id = "project-dropdown";
-    projectDropdown.name = "project"
+    projectDropdown.name = "project";
 
-    // create for loop to create project options
-    let projectValue;
-
+    // get projects
     const projects = getProjectsFromLocalStorage();
-    console.log(projects)
 
-    const projectOption = document.createElement("option");
-    projectOption.value = "Inbox";
-    projectOption.textContent =
-        "Inbox";
-    projectDropdown.value = "Inbox";
-    projectDropdown.append(projectOption);
+    // Always add Inbox first
+    const inboxOption = document.createElement("option");
+    inboxOption.value = "Inbox";
+    inboxOption.textContent = "Inbox";
+    projectDropdown.append(inboxOption);
 
-    if (projects.length !== 0) {
-        console.log("this is correct")
-        projects.forEach((project) => {
-            console.log(project)
-            const projectOption = document.createElement("option");
-            projectOption.value = project.projectTitle;
-            projectOption.textContent =
-                project.projectTitle;
-            projectDropdown.value = project.projectTitle;
-            projectDropdown.append(projectOption);
-        })
-    }
+    // Add project options
+    projects.forEach(projectName => {
+        const option = document.createElement("option");
+        option.value = projectName.projectTitle;
+        option.textContent = projectName.projectTitle;
+        projectDropdown.append(option);
+    });
 
-    // get project task from modal id
-    // console.log(modalID)
+    // Select correct value
+    const project = modalID
+        ? getTasksFromLocalStorage().find(task => task.id === modalID)
+        : null;
+    projectDropdown.value = project?.project ?? "Inbox";
 
-    // console.log(getTasksFromLocalStorage())
-    // const optionSelectedFromTask = getTasksFromLocalStorage().find((task) => task.id === modalID);
-
-    // console.log(optionSelectedFromTask)
-    // projectDropdown.value = optionSelectedFromTask.project
-    // const projectOption = document.createElement("option");
-    // getProjectsFromLocalStorage().forEach((project) => {
-
-
-    //     projectOption.textContent = `${project.projectTitle}`;
-
-    //     projectDropdown.append(projectOption);
-    // })
 
     // create action button group
     const actionButtonGroup = document.createElement("div");
@@ -194,7 +174,6 @@ function renderAddTask(modalID) {
 }
 
 export function renderModifyTask(modalID) {
-    console.log(modalID)
 
     const container = document.createElement("div");
     container.classList.add("modify-task-button-group");
