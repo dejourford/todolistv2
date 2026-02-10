@@ -134,9 +134,10 @@ function renderAddTask(modalID) {
 
     const projectOption = document.createElement("option");
     projectOption.value = "Inbox";
-    projectOption.textContent = "Inbox";
-
-    projectDropdown.append(projectOption);
+    projectOption.textContent =
+        "Inbox";
+    projectDropdown.value = "Inbox";
+        projectDropdown.append(projectOption);
 
     if (projects.length !== 0) {
         console.log("this is correct")
@@ -146,10 +147,27 @@ function renderAddTask(modalID) {
             projectOption.value = project.projectTitle;
             projectOption.textContent =
                 project.projectTitle;
-
+            projectDropdown.value = project.projectTitle;
             projectDropdown.append(projectOption);
         })
     }
+    
+    // get project task from modal id
+    console.log(modalID)
+
+    console.log(getTasksFromLocalStorage())
+    const optionSelectedFromTask = getTasksFromLocalStorage().find((task) => task.id === modalID);
+   
+console.log(optionSelectedFromTask)
+projectDropdown.value = optionSelectedFromTask.project
+    // const projectOption = document.createElement("option");
+    // getProjectsFromLocalStorage().forEach((project) => {
+
+
+    //     projectOption.textContent = `${project.projectTitle}`;
+
+    //     projectDropdown.append(projectOption);
+    // })
 
     // create action button group
     const actionButtonGroup = document.createElement("div");

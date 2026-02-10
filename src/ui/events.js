@@ -1,5 +1,5 @@
 import plusIcon from "../assets/icons/plus.svg"
-import { addToLocalStorage, getTasksFromLocalStorage, removeItemFromLocalStorage } from "../modules/storage";
+import { addToLocalStorage, getProjectsFromLocalStorage, getTasksFromLocalStorage, removeItemFromLocalStorage } from "../modules/storage";
 import { closeModal, createModal, openModal, renderModifyTask } from "./modal";
 import { renderTasks } from "./render";
 
@@ -86,6 +86,18 @@ export default function initAppEvents() {
             const tabTextContent = item.textContent
             const tabId = item.id
             showTabContent(tabTextContent, tabId);
+
+            if (e.target.classList.contains("project")) {
+                console.log("correcT!")
+                // renderTasks(getCurrentProject(), getProjectsFromLocalStorage())
+                console.log(getProjectsFromLocalStorage())
+
+                const arrayToFilterForProjects = getTasksFromLocalStorage();
+                console.log(arrayToFilterForProjects)
+
+                const filteredArray = arrayToFilterForProjects.filter((item) => item.project === getCurrentProject())
+                console.log(filteredArray)
+            }
             renderTasks(getCurrentProject(), getTasksFromLocalStorage())
         })
     })
